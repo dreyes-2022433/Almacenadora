@@ -5,6 +5,13 @@ import express from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
 import helmet from 'helmet'
+import authClient from '../src/Client/client.routes.js'
+import authSupplier from '../src/Supplier/supplier.routes.js'
+import authProduct from '../src/Products/product.routes.js'
+import authUser from '../src/User/user.routes.js'
+import authReport from '../src/Report/report.routes.js'
+import authEntry from '../src/Entry/entry.routes.js'
+
 
 const configs = (app)=>{
     app.use(express.json()) //Aceptar y enviar datos en JSON
@@ -16,6 +23,13 @@ const configs = (app)=>{
 }
 
 const routes = (app)=>{
+    app.use('/client',authClient)
+    app.use('/supplier',authSupplier)
+    app.use('/product',authProduct)
+    app.use('/user',authUser)
+    app.use('/report',authReport)
+    app.use('/entry',authEntry)
+
 
 }
 
