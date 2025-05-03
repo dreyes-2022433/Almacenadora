@@ -3,8 +3,8 @@ import Product from './product.model.js';
 // Agregar un nuevo producto
 export const addProduct = async (req, res) => {
     try {
-        const { name, category, stock, supplier, entryDate } = req.body;
-        const newProduct = new Product({ name, category, stock, supplier, entryDate });
+        const { name, category, stock, supplier, entryDate,expirationDate, unitPrice } = req.body
+        const newProduct = new Product({ name, category, stock, supplier, entryDate, expirationDate,unitPrice });
         await newProduct.save();
         res.status(201).json({ message: 'Producto agregado exitosamente', product: newProduct });
     } catch (error) {
