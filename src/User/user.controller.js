@@ -7,6 +7,8 @@ export const registerUser = async(req, res)=>{
         let data = req.body
         let user = new User(data)
         user.password = await encrypt(user.password)
+
+        user.role = 'EMPLOYEE'
         //Guardar
         await user.save()
         //Responder al usuario
