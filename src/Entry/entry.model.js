@@ -17,20 +17,25 @@ const entrySchema = new Schema({
     },
     Date: {
         type: Date,
-        default: Date.now,
+        default: () => {
+            const today = new Date();
+            return new Date(today.getFullYear(), today.getMonth(), today.getDate()); // Solo día, mes y año
+        },
     },
-    empleado: {
+    employee: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: [true, 'Employee is required'],
     },
-    motivo: {
+    reason: {
         type: String,
         
     },
-    destino : {
+    destiny : {
         type: String,
         
     },
 })
+
+
 export default model('Entry', entrySchema)
