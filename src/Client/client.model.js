@@ -1,13 +1,17 @@
 import { Schema,model } from "mongoose"
 
 const reportSchema = new Schema({
-    nombre : {
+    name : {
         type: String,
         required: [true, 'Name is required'],
     },
-    contacto : {
+    contact : {
         type: String,
         required: [true, 'Contact is required'],
+    },
+    company : {
+        type: String,
+        required: [true, 'Company is required'],
     },
 
 })
