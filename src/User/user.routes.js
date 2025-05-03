@@ -8,7 +8,7 @@ router.post('/register', registerUser);
 
 
 // Ruta para obtener el perfil de un usuario (requiere autenticación)
-router.get('/profile', findAllUsers);
+router.get('/', findAllUsers);
 
 // Ruta para actualizar el perfil de un usuario (requiere autenticación)
 router.put('/profile', deleteUser);
