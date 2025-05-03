@@ -1,22 +1,22 @@
 import Product from '../Products/product.model.js';
-import Movement from './movement.model.js'; // Modelo para registrar movimientos
+import Entry from './entry.model.js'; // Modelo para registrar movimientos
 
 // Registro de entradas
 export const registerEntry = async (req, res) => {
     try {
-        const { productId, quantity, entryDate, employee } = req.body;
+        const { product, quantity, entryDate, employee } = req.body;
 
         // Actualizar el stock del producto
-        const product = await Product.findById(productId);
-        if (!product) {
+        const findproduct = await Product.findById(product);
+        if (!findproduct) {
             return res.status(404).json({ message: 'Producto no encontrado' });
         }
-        product.stock += quantity;
-        await product.save();
+        findproduct.stock += parseFloat(quantity);
+        await findproduct.save();
 
         // Registrar el movimiento de entrada
-        const entry = new Movement({
-            productId,
+        const entry = new Entry({
+            product,
             type: 'entry',
             quantity,
             date: entryDate,
@@ -43,12 +43,12 @@ export const registerExit = async (req, res) => {
         if (product.stock < quantity) {
             return res.status(400).json({ message: 'Stock insuficiente' });
         }
-        product.stock -= quantity;
+        product.stock -= parseFloat(quantity);
         await product.save();
 
         // Registrar el movimiento de salida
-        const exit = new Movement({
-            productId,
+        const exit = new Entry({
+            product: productId,
             type: 'exit',
             quantity,
             date: exitDate,
@@ -76,15 +76,15 @@ export const registerExit = async (req, res) => {
 };
 
 // Historial de movimientos
-export const getMovements = async (req, res) => {
+export const getEntrys = async (req, res) => {
     try {
         const { productId } = req.query;
 
         // Filtrar movimientos por producto si se proporciona un ID
         const query = productId ? { productId } : {};
-        const movements = await Movement.find(query).sort({ date: -1 });
+        const Entrys = await Entry.find(query).sort({ date: -1 });
 
-        res.status(200).json({ message: 'Historial de movimientos obtenido', movements });
+        res.status(200).json({ message: 'Historial de movimientos obtenido', Entrys });
     } catch (error) {
         res.status(500).json({ message: 'Error al obtener el historial de movimientos', error });
     }
