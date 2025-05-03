@@ -1,7 +1,10 @@
-import {router} from 'express';
+import {Router} from 'express';
 import { addSupplier,  getSuppliers } from './supplier.controller.js';
 
-const api = router()
+const api = Router()
 
-api.post("/suppliers", addSupplier) // Agregar un nuevo proveedor
+api.post("/addsuppliers", addSupplier) // Agregar un nuevo proveedor
 api.get("/suppliers", getSuppliers) // Obtener todos los proveedores
+
+
+export default api
