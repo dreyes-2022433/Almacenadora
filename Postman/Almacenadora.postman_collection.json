@@ -1,0 +1,493 @@
+{
+	"info": {
+		"_postman_id": "3bbe3d1c-980f-4d00-845f-3b248f3d9eda",
+		"name": "Almacenadora",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37951877"
+	},
+	"item": [
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Diego Andres",
+									"type": "text"
+								},
+								{
+									"key": "contact",
+									"value": "walmart@gamil.com",
+									"type": "text"
+								},
+								{
+									"key": "company",
+									"value": "Walmart",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3636/client",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3636",
+							"path": [
+								"client"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Andres",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "andres@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Andres241132!",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3636/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3636",
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "http://localhost:3636/user/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3636",
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "AddProducts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Cocacola",
+									"type": "text"
+								},
+								{
+									"key": "category",
+									"value": "Bebidas",
+									"type": "text"
+								},
+								{
+									"key": "stock",
+									"value": "82",
+									"type": "text"
+								},
+								{
+									"key": "supplier",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "entryDate",
+									"value": "08/04/2025",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "expirationDate",
+									"value": "08/04/2027",
+									"type": "text"
+								},
+								{
+									"key": "unitPrice",
+									"value": "4.99",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3636/product/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3636",
+							"path": [
+								"product",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3636/product/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3636",
+							"path": [
+								"product",
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Supplier",
+			"item": [
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Rodrigo",
+									"type": "text"
+								},
+								{
+									"key": "contact",
+									"value": "36124296",
+									"type": "text"
+								},
+								{
+									"key": "products",
+									"value": "68168d128e2aa991527c94ed",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3636/supplier/addsuppliers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3636",
+							"path": [
+								"supplier",
+								"addsuppliers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "entry",
+			"item": [
+				{
+					"name": "EntradaProducts",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "product",
+								"value": "68168d128e2aa991527c94ed",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "quantity",
+								"value": "10",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "entryDate",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "emplooye",
+								"value": "68168851b709ae15a589bec3",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "product",
+									"value": "68168d128e2aa991527c94ed",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "entryDate",
+									"value": "2025-05-03",
+									"type": "text"
+								},
+								{
+									"key": "employee",
+									"value": "68168851b709ae15a589bec3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3636/entry/entry",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3636",
+							"path": [
+								"entry",
+								"entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "salidaProducts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "productId",
+									"value": "68168d128e2aa991527c94ed",
+									"type": "text"
+								},
+								{
+									"key": "quantity",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "exitDate",
+									"value": "03/05/2025",
+									"type": "text"
+								},
+								{
+									"key": "employee",
+									"value": "68168851b709ae15a589bec3",
+									"type": "text"
+								},
+								{
+									"key": "reason",
+									"value": "10 unidades fueron entregadas de mas",
+									"type": "text"
+								},
+								{
+									"key": "destination",
+									"value": "FabricasCocacola",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3636/entry/exit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3636",
+							"path": [
+								"entry",
+								"exit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3636/entry/movements",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3636",
+							"path": [
+								"entry",
+								"movements"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Report",
+			"item": [
+				{
+					"name": "GetInventory",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3636/report/inventory-report",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3636",
+							"path": [
+								"report",
+								"inventory-report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMovimientos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "starDate",
+									"value": "2025-05-03T06:00:00.000Z",
+									"type": "text"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-05-03T06:00:00.000Z",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3636/report/movement-report",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3636",
+							"path": [
+								"report",
+								"movement-report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ProductStatics",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3636/report/product-statistics",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3636",
+							"path": [
+								"report",
+								"product-statistics"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
