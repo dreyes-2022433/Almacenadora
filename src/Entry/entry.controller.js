@@ -1,4 +1,5 @@
 import Product from '../Products/product.model.js';
+import User from '../User/user.model.js'
 import Entry from './entry.model.js'; // Modelo para registrar movimientos
 
 // Registro de entradas
@@ -11,6 +12,13 @@ export const registerEntry = async (req, res) => {
         if (!findproduct) {
             return res.status(404).json({ message: 'Producto no encontrado' });
         }
+
+        // Verificar si el empleado existe
+        const findEmployee = await User.findById(employee);
+        if (!findEmployee) {
+            return res.status(404).json({ message: 'Empleado no encontrado' });
+        }
+
         findproduct.stock += parseFloat(quantity);
         await findproduct.save();
 
@@ -34,6 +42,12 @@ export const registerEntry = async (req, res) => {
 export const registerExit = async (req, res) => {
     try {
         const { productId, quantity, exitDate, employee, reason, destination } = req.body;
+
+         // Verificar si el empleado existe
+         const findEmployee = await User.findById(employee);
+         if (!findEmployee) {
+             return res.status(404).json({ message: 'Empleado no encontrado' });
+         }
 
         // Actualizar el stock del producto
         const product = await Product.findById(productId);
