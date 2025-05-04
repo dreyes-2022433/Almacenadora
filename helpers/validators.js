@@ -40,3 +40,63 @@ export const validateRegisExit = [
         .isLength({ min: 3 }).withMessage('El destino debe tener al menos 3 caracteres'),
     validateErrorWithoutImg
 ]
+
+/*-------------------- VALIDACIÓN DE PRODUCTOS ---------------- */
+export const validateAddProduct = [
+    body('name', 'El nombre no puede ir vacio')
+        .notEmpty(),
+    body('category', 'La categoria no puede ir vacia')
+        .notEmpty(),
+    body('stock', 'El stock no puede ir vacio')
+        .notEmpty()
+        .isInt({ min: 0 })
+        .withMessage('El stock tiene que ser un número valido'),
+    body('supplier', 'El proveedor no puede ir vacio')
+        .notEmpty()
+        .isMongoId()
+        .withMessage('El proveedor debe ser un ID valido'),
+    body('entryDate', 'La fecha de entrada no puede ir vacia')
+        .notEmpty()
+        .isISO8601().withMessage('La fecha de entrada debe tener un formato válido, ejemplo: 2025-05-03'),
+    body('expirationDate', 'La fecha de expiración no puede ir vacio')
+        .notEmpty()
+        .isISO8601().withMessage('La fecha de expiración debe tener un formato válido, ejemplo: 2025-05-03'),
+    body('unitPrice', 'El precio unitario no puede ir vacio')
+        .notEmpty()
+        .isFloat({ min: 0 })
+        .withMessage('El precio unitario tiene que ser un número valid'),
+    validateErrorWithoutImg
+]
+
+export const validateUpdateProduct = [
+    body('name', 'El nombre no puede ir vacio')
+        .optional()
+        .notEmpty(),
+    body('category', 'La categoria no puede ir vacia')
+        .optional()
+        .notEmpty(),
+    body('stock', 'El stock no puede ir vacio')
+        .optional()
+        .notEmpty()
+        .isInt({ min: 0 })
+        .withMessage('El stock tiene que ser un número valido'),
+    body('supplier', 'El proveedor no puede ir vacio')
+        .optional()
+        .notEmpty()
+        .isMongoId()
+        .withMessage('El proveedor debe ser un ID valido'),
+    body('entryDate', 'La fecha de entrada no puede ir vacia')
+        .optional()
+        .notEmpty()
+        .isISO8601().withMessage('La fecha de entrada debe tener un formato válido, ejemplo: 2025-05-03'),
+    body('expirationDate', 'La fecha de expiración no puede ir vacio')
+        .optional()
+        .notEmpty()
+        .isISO8601().withMessage('La fecha de expiración debe tener un formato válido, ejemplo: 2025-05-03'),
+    body('unitPrice', 'El precio unitario no puede ir vacio')
+        .optional()
+        .notEmpty()
+        .isFloat({ min: 0 })
+        .withMessage('El precio unitario tiene que ser un número valid'),
+    validateErrorWithoutImg
+]
