@@ -13,8 +13,7 @@ const supplierSchema = new Schema({
     [{
         type: Schema.Types.ObjectId,
         ref: 'Product',
-        required: [true, 'Product is required'],
-    }]  ,
+    }],
 })
 
 export default model('Supplier', supplierSchema)
