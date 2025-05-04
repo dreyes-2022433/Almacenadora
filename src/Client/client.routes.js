@@ -1,10 +1,17 @@
 import { Router } from "express"
 import { addClient, getClients } from "./client.controller.js"
+import { validAddClient } from "../../helpers/validators.js"
 
 const api = Router()
 
-api.post("/", addClient) // Registrar un nuevo cliente
-api.get("/", getClients) // Obtener todos los clientes
-
+api.post(
+    "/",
+    [validAddClient],
+     addClient
+) 
+api.get(
+    "/", 
+    getClients
+) 
 
 export default api
