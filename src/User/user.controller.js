@@ -1,6 +1,7 @@
 import User from './user.model.js'
 
 import {  encrypt , checkPassword} from '../../utils/encrypt.js'
+import jwt from 'jsonwebtoken'
 
 export const registerUser = async(req, res)=>{
     try{
@@ -18,6 +19,43 @@ export const registerUser = async(req, res)=>{
         return res.status(500).send({message: 'General error with registering user', err})
     }
 }
+
+
+export const loginUser = async (req, res) => {
+    try {
+        const { email, password } = req.body
+
+        const user = await User.findOne({ email })
+
+        if (!user || user.status === false)
+            return res.status(400).send({ message: 'Invalid email or user deleted' })
+
+        const passwordMatch = await checkPassword(password, user.password)
+        if (!passwordMatch)
+            return res.status(400).send({ message: 'Incorrect password' })
+
+        const token = jwt.sign(
+            { uid: user._id, role: user.role },
+            process.env.SECRET_KEY,
+            { expiresIn: '24h' }
+        )
+
+        return res.send({
+            message: 'Login successful',
+            token,
+            user: {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                role: user.role
+            }
+        })
+    } catch (err) {
+        console.error(err)
+        return res.status(500).send({ message: 'Login error', err })
+    }
+}
+
 
 export const updateUser = async(req, res)=>{
     try{
@@ -59,19 +97,24 @@ export const updateProfile = async(req,res)=>{
     }
 }
 
-export const findAllUsers = async(req, res)=>{
-    try{
-        const {limit = 20, skip = 0} = req.query
-        let users = await User.find({status:true})
+export const findAllUsers = async (req, res) => {
+    try {
+      const { limit = 20, skip = 0 } = req.query
+      let users = await User.find({ status: true })
         .skip(skip)
         .limit(limit)
-        if(users.length === 0) return res.status(404).send({message: 'No users found'})
-        return res.send({message: 'Users found', users})
-    }catch(err){
-        console.error(err)
-        return res.status(500).send({message: 'General error', err})
+  
+      if (users.length === 0)
+        return res.send({ message: 'No users found', users: [] })
+  
+      return res.send({ message: 'Users found', users })
+    } catch (err) {
+      console.error(err)
+      return res.status(500).send({ message: 'General error', err })
     }
-}
+  }
+  
+
 export const deleteUser = async(req, res)=>{
     try {
         let id = req.body.id 
@@ -110,8 +153,6 @@ export const deleteOwnUser = async (req, res)=>{
         return res.status(500).send({message: 'General error', err})
     }
 }
-
-//Creacion del administrador
 
 export const createAdmin = async()=>{
     let admin = await User.findOne({email: 'dreyes-2022433@kinal.edu.gt'})
