@@ -1,16 +1,65 @@
-import express from 'express';
-import { registerUser, deleteUser, findAllUsers } from './user.controller.js';
+import { Router } from 'express'
+import {
+  registerUser,
+  loginUser,
+  updateProfile,
+  deleteOwnUser,
+  deleteUser,
+  findAllUsers
+} from './user.controller.js'
 
-const router = express.Router();
+import { validateJwt, isAdmin } from '../../middlewares/validate.jwt.js'
+import {
+  validRegisterUser,
+  validUpdateUser
+} from '../../helpers/validators.js'
 
-// Ruta para registrar un nuevo usuario
-router.post('/register', registerUser);
+import { body } from 'express-validator'
+import { isValidMongoId } from '../../helpers/db.validators.js'
+import { validateErrorWithoutImg } from '../../helpers/validate.error.js'
 
+const api = Router()
 
-// Ruta para obtener el perfil de un usuario (requiere autenticación)
-router.get('/', findAllUsers);
+api.post('/login', loginUser)
 
-// Ruta para actualizar el perfil de un usuario (requiere autenticación)
-router.put('/profile', deleteUser);
+api.post(
+  '/register',
+  [validateJwt, isAdmin, validRegisterUser],
+  registerUser
+)
 
-export default router;
+api.get(
+  '/',
+  [validateJwt, isAdmin],
+  findAllUsers
+)
+
+api.put(
+  '/profile',
+  [validateJwt, validUpdateUser],
+  updateProfile
+)
+
+api.delete(
+  '/profile',
+  [
+    validateJwt,
+    body('password', 'Password is required to delete your account').notEmpty(),
+    validateErrorWithoutImg
+  ],
+  deleteOwnUser
+)
+
+api.delete(
+  '/',
+  [
+    validateJwt,
+    isAdmin,
+    body('id', 'Valid Mongo ID is required').notEmpty(),
+    body('id').custom(isValidMongoId),
+    validateErrorWithoutImg
+  ],
+  deleteUser
+)
+
+export default api
