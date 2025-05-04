@@ -128,3 +128,32 @@ export const validUpdateUser = [
         .isLength({ max: 50 }),
     validateErrorWithoutImg
 ]
+
+/*-------------------- VALIDACIÓN DE SUPPLIER ---------------- */
+
+export const validAddSupplier = [
+    body('name', 'Name cannot be empty')
+        .trim()
+        .notEmpty()
+        .withMessage('Name must be provided'),
+    body('contact', 'Contact cannot be empty')
+        .trim()
+        .notEmpty()
+        .withMessage('Contact must be provided'),
+    
+]
+
+/*-------------------- VALIDACIÓN DE CLIENT ---------------- */
+
+export const validAddClient = [
+    body('name', 'Name cannot be empty')
+        .trim()
+        .notEmpty().withMessage('Name is required'),
+    body('contact', 'Contact cannot be empty')
+        .trim()
+        .notEmpty().withMessage('Contact is required'),
+    body('company', 'Company cannot be empty')
+        .trim()
+        .notEmpty().withMessage('Company is required'),
+    validateErrorWithoutImg
+]
