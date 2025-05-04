@@ -1,11 +1,42 @@
 import { Router } from "express"
 import { addProduct, editProduct, deleteProduct, searchProducts } from "./product.controller.js"
+import { validateAddProduct, validateUpdateProduct } from "../../helpers/validators.js"
 
 const api = Router()
 
-api.post("/", addProduct) // Agregar un nuevo producto
-api.put("/products/:id", editProduct) // Editar un producto existente
-api.delete("/products/:id", deleteProduct) // Eliminar un producto
-api.get("/products", searchProducts) // Buscar y filtrar productos
+// Agregar un nuevo producto
+api.post(
+    "/", 
+    [
+        validateAddProduct
+    ],
+    addProduct
+) 
+
+// Editar un producto existente
+api.put(
+    "/:id", 
+    [
+        validateUpdateProduct
+    ],
+    editProduct) 
+
+// Eliminar un producto
+api.delete(
+    "/",
+    [
+
+    ], 
+    deleteProduct
+) 
+
+// Buscar y filtrar productos
+api.get(
+    "/products", 
+    [
+
+    ],
+    searchProducts
+) 
 
 export default api
