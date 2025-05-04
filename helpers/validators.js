@@ -1,5 +1,6 @@
 import { body } from "express-validator";
 import { validateErrorWithoutImg} from "./validate.error.js";
+import { existEmail } from "./db.validators.js";
 
 /*-------------------- VALIDACIÓN DE ENTRADA DE PRODUCTOS ---------------- */
 export const validateRegisEntry = [
@@ -98,5 +99,32 @@ export const validateUpdateProduct = [
         .notEmpty()
         .isFloat({ min: 0 })
         .withMessage('El precio unitario tiene que ser un número valid'),
+    validateErrorWithoutImg
+]
+
+/*-------------------- VALIDACIÓN DE USUARIOS ---------------- */
+export const validRegisterUser = [
+    body('name', 'Name is required and must not exceed 25 characters')
+        .notEmpty()
+        .isLength({ max: 25 }),
+    body('email', 'Valid email is required and must not exceed 50 characters')
+        .notEmpty()
+        .isEmail()
+        .isLength({ max: 50 }),
+    body('password', 'Password is required and must be at least 6 characters')
+        .notEmpty()
+        .isLength({ min: 6 }),
+    body('email').custom(existEmail),
+    validateErrorWithoutImg
+]
+
+export const validUpdateUser = [
+    body('name', 'Name must not exceed 25 characters')
+        .optional()
+        .isLength({ max: 25 }),
+    body('email', 'Email must not exceed 50 characters')
+        .optional()
+        .isEmail()
+        .isLength({ max: 50 }),
     validateErrorWithoutImg
 ]
