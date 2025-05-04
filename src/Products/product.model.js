@@ -17,8 +17,7 @@ const productSchema = new Schema({
     },
     supplier : {
         type: Schema.Types.ObjectId,
-        ref: 'Supplier',
-        
+        ref: 'Supplier',  
     },
     entryDate : {
         type: Date,
@@ -32,6 +31,9 @@ const productSchema = new Schema({
         type: Number,
         required: [true, 'Price is required'],
     },
+    reason : {
+        type: String
+    }
 })
  
 export default model('Product', productSchema)
