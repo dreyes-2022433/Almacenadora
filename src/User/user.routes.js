@@ -24,7 +24,7 @@ api.post('/login', loginUser)
 
 api.post(
   '/register',
-  [validateJwt, isAdmin, validRegisterUser],
+  [validRegisterUser],
   registerUser
 )
 

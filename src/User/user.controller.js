@@ -30,7 +30,7 @@ export const loginUser = async (req, res) => {
         if (!user || user.status === false)
             return res.status(400).send({ message: 'Invalid email or user deleted' })
 
-        const passwordMatch = await checkPassword(password, user.password)
+        const passwordMatch = await checkPassword(user.password, password)
         if (!passwordMatch)
             return res.status(400).send({ message: 'Incorrect password' })
 

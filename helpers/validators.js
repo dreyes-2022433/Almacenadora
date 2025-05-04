@@ -113,7 +113,9 @@ export const validRegisterUser = [
         .isLength({ max: 50 }),
     body('password', 'Password is required and must be at least 6 characters')
         .notEmpty()
-        .isLength({ min: 6 }),
+        .isLength({ min: 6 })
+        .matches(/^(?=.*[A-Z])(?=.*\d).+$/)
+        .withMessage('Password must contain at least one uppercase letter and one number'),
     body('email').custom(existEmail),
     validateErrorWithoutImg
 ]
