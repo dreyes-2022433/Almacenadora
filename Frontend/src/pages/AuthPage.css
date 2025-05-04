@@ -1,0 +1,120 @@
+.auth-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+.login-container, .register-container {
+    width: 500px;
+    margin: 0 auto;
+    border: 1px solid #4a90e2; /* Azul frío */
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    background-color: transparent;
+}
+
+.register-container {
+    height: auto;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-form input {
+    margin: 6px 0;
+    padding: 12px;
+    width: 400px;
+    border: 1px solid #4a90e2; 
+    color: white;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: 15px;
+    border-radius: 6px;
+    transition: border-color 0.3s;
+}
+
+
+
+.auth-form input::placeholder {
+    color: #b0c4de; 
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #357ab7;
+}
+
+.auth-form button {
+    cursor: pointer;
+    background-color: #4a90e2; 
+    color: white;
+    border: none;
+    border-radius: 8px;
+    width: 410px;
+    height: 40px;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    font-size: 15px;
+}
+
+.auth-form button:hover {
+    background-color: #357ab7; 
+}
+
+.auth-form button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.auth-form-label {
+    width: 410px;
+    font-weight: 600;
+    font-size: 14px;
+    color: white;
+}
+
+.auth-form-logo-container {
+    font-size: 30px;
+    font-weight: bold;
+    color: #4a90e2;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.auth-form-switch-label {
+    color: #4a90e2; 
+    font-weight: 500;
+    font-size: 14px;
+    transition: 0.3s;
+    cursor: pointer;
+    padding-top: 12px;
+    text-decoration: underline;
+}
+
+.auth-form-switch-label:hover {
+    color: #357ab7; 
+}
+
+.auth-form-validation-message {
+    width: 400px;
+    color: #ff4d4d; 
+    font-size: 13px;
+    margin-top: 5px;
+}
