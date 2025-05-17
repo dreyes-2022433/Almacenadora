@@ -6,30 +6,60 @@ const api = axios.create({
   timeout: 2000,
 })
 
-
-
 export const registerRequest = async (user) => {
-    try{
-        return await api.post('/user/register', user,{
-            type: 'multipart/form-data',
-        })
-    }catch (error) {
-        return {
-            error: true,
-            error
-        }
+  try {
+    return await api.post('/user/register', user, {
+      type: 'multipart/form-data',
+    })
+  } catch (error) {
+    return {
+      error: true,
+      error,
     }
+  }
 }
 
 export const loginRequest = async (user) => {
-    try{
-        return await api.post('/user/login', user,{
-            type: 'multipart/form-data',
-        })
-    }catch (error) {
-        return {
-            error: true,
-            error
-        }
+  try {
+    return await api.post('/user/login', user, {
+      type: 'multipart/form-data',
+    })
+  } catch (error) {
+    return {
+      error: true,
+      error,
     }
+  }
+}
+
+export const fetchSuppliers = async () => {
+  try {
+    return await api.get('/supplier/suppliers')
+  } catch (error) {
+    return { error: true, error }
+  }
+}
+
+export const createSupplier = async (supplierData) => {
+  try {
+    return await api.post('/supplier/addsuppliers', supplierData)
+  } catch (error) {
+    return { error: true, error }
+  }
+}
+
+export const fetchClients = async () => {
+  try {
+    return await api.get('/client')
+  } catch (error) {
+    return { error: true, error }
+  }
+}
+
+export const createClient = async (clientData) => {
+  try {
+    return await api.post('/client', clientData)
+  } catch (error) {
+    return { error: true, error }
+  }
 }
