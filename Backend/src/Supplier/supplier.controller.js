@@ -4,12 +4,11 @@ import Client from '../Client/client.model.js'
 
 export const addSupplier = async (req, res) => {
     try {
-        const { name, contact, productsSupplied } = req.body
+        const { name, contact } = req.body
         const newSupplier = new Supplier(
             { 
                 name, 
-                contact, 
-                productsSupplied 
+                contact
             }
         )
         await newSupplier.save()
