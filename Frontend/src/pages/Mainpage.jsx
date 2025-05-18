@@ -12,6 +12,7 @@ export const Home = () => {
             <a href="#">Productos</a>
             <a href="#">Servicios</a>
             <a href="#">Contacto</a>
+            <a href="/reports">Reportes</a>
           </nav>
         </header>
 
