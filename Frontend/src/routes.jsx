@@ -1,5 +1,6 @@
 import { AuthPage } from "./pages/AuthPage"
 import { NotFound } from "./pages/NotFound"
+import { ReportsPage } from './pages/ReportsPage'
 
 import { Home } from "./pages/Mainpage.jsx"
 import { SupplierComponent } from "./components/Supplier/SupplierComponent.jsx"
@@ -12,4 +13,5 @@ export const routes = [
     {path: '/*', element: <NotFound /> },
     {path: '/suppliers', element: <SupplierComponent/>},
     {path: '/clients', element: <ClientComponent />},
+    {path: '/reports', element: <ReportsPage /> }
 ]
