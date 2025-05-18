@@ -96,7 +96,7 @@ export const getEntrys = async (req, res) => {
 
         // Filtrar movimientos por producto si se proporciona un ID
         const query = productId ? { productId } : {};
-        const Entrys = await Entry.find(query).sort({ date: -1 });
+        const Entrys = await Entry.find(query).populate('employee product', 'name name').sort({ date: -1 });
 
         res.status(200).json({ message: 'Historial de movimientos obtenido', Entrys });
     } catch (error) {
