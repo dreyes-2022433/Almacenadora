@@ -1,0 +1,54 @@
+.reports-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #2C3E50;
+  padding: 1.2rem 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  color: white;
+  position: sticky;
+  z-index: 1000;
+  top: 0;
+  margin-top: 0;
+}
+
+.reports-header h1 {
+  font-size: 1.8em;
+  margin: 0;
+  font-weight: bold;
+  letter-spacing: 1px;
+
+}
+
+.reports-header nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: bold;
+  transition: color 0.3s;
+  gap: 1.5rem;
+
+}
+
+.reports-header nav a:hover {
+  color: #cfd3d4;
+}
+
+/* Contenedor principal */
+.reportes-container {
+  padding: 2rem 1rem;
+  margin-top: 30px; 
+  text-align: center;
+  background-color: #D9D9D9;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.reportes-container h1 {
+  font-size: 2em;
+  margin-bottom: 2rem;
+}
+
+.reportes-container .card {
+  margin-bottom: 20px; 
+}
