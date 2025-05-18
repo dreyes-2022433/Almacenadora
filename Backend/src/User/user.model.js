@@ -19,6 +19,10 @@ const userSchema = new Schema({
         enum: ['ADMIN', 'EMPLOYEE'],
         default: 'EMPLOYEE',
     },
+    status : {
+        type: Boolean, 
+        default: true,
+    }
 }, )
 
 export default model('User', userSchema)
