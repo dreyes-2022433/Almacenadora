@@ -97,6 +97,25 @@ export const updateProfile = async(req,res)=>{
     }
 }
 
+export const updateUserRole = async (req, res) => {
+    try {
+        const { id, role } = req.body
+        if (!['ADMIN', 'EMPLOYEE'].includes(role)) {
+            return res.status(400).send({ message: 'Rol inválido' })
+        }
+        const user = await User.findByIdAndUpdate(
+            id,
+            { role },
+            { new: true }
+        )
+        if (!user) return res.status(404).send({ message: 'Usuario no encontrado' })
+        return res.send({ message: 'Rol actualizado', user })
+    } catch (err) {
+        console.error(err)
+        return res.status(500).send({ message: 'Error al actualizar rol', err })
+    }
+}
+
 export const findAllUsers = async (req, res) => {
     try {
       const { limit = 20, skip = 0 } = req.query
