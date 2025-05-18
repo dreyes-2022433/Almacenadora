@@ -62,9 +62,9 @@ export const Login = ({ handleIsLogin }) => {
     <div
       className="auth-form"
       style={{
-        transform: 'none', // Evita el movimiento al pasar el mouse
-        boxShadow: '0 8px 20px rgba(0, 0, 0, 0.1)', // Sombra fija
-        marginTop: '2rem', // Mantiene el margen original
+        transform: 'none',
+        boxShadow: '0 8px 20px rgba(0, 0, 0, 0.1)',
+        marginTop: '10rem', // Aumenta este valor para mover el cuadro más abajo (antes era 2rem)
       }}
     >
       <Heading as="h1" size="md" mb={4} color="#1A3C5A" fontFamily="'Poppins', sans-serif">
