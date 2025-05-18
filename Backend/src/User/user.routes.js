@@ -3,6 +3,7 @@ import {
   registerUser,
   loginUser,
   updateProfile,
+  updateUserRole,
   deleteOwnUser,
   deleteUser,
   findAllUsers
@@ -38,6 +39,19 @@ api.put(
   '/profile',
   [validateJwt, validUpdateUser],
   updateProfile
+)
+
+api.put(
+    '/role',
+    [
+        validateJwt,
+        isAdmin,
+        body('id', 'Se requiere un ID de Mongo válido').notEmpty(),
+        body('id').custom(isValidMongoId),
+        body('role', 'El rol es requerido').notEmpty(),
+        validateErrorWithoutImg
+    ],
+    updateUserRole
 )
 
 api.delete(
