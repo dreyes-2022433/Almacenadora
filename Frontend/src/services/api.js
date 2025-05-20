@@ -63,3 +63,27 @@ export const createClient = async (clientData) => {
     return { error: true, error }
   }
 }
+
+export const registerEntryRequest = async (entryData) => {
+  try {
+    return await api.post('/entry/entry', entryData)
+  } catch (error) {
+    return { error: true, error }
+  }
+}
+
+export const registerExitRequest = async (exitData) => {
+  try {
+    return await api.post('/entry/exit', exitData)
+  } catch (error) {
+    return { error: true, error }
+  }
+}
+
+export const fetchEntries = async () => {
+  try {
+     return await api.get('/entry/movements')
+  } catch (error) {
+    return { error: true, error }
+  }
+}
