@@ -91,15 +91,14 @@ export const registerExit = async (req, res) => {
 
 // Historial de movimientos
 export const getEntrys = async (req, res) => {
-    try {
-        const { productId } = req.query;
+  try {
+    const Entrys = await Entry.find()
+      .populate('employee', 'name')
+      .populate('product', 'name')
+      .sort({ date: -1 });
 
-        // Filtrar movimientos por producto si se proporciona un ID
-        const query = productId ? { productId } : {};
-        const Entrys = await Entry.find(query).populate('employee product', 'name name').sort({ date: -1 });
-
-        res.status(200).json({ message: 'Historial de movimientos obtenido', Entrys });
-    } catch (error) {
-        res.status(500).json({ message: 'Error al obtener el historial de movimientos', error });
-    }
+    res.status(200).json({ message: 'Historial de movimientos obtenido', Entrys });
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener el historial de movimientos', error });
+  }
 };
